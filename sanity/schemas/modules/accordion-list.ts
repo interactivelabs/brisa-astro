@@ -62,12 +62,6 @@ export default defineType({
       initialValue: "vertical",
       group: "options",
     }),
-    defineField({
-      name: "uid",
-      title: "Unique Identifier",
-      type: "uid",
-      group: "options",
-    }),
   ],
   preview: {
     select: {

@@ -15,6 +15,7 @@ import metadata from "./objects/metadata";
 
 // modules
 import accordionList from "./modules/accordion-list";
+// import blockContent from "./modules/block-content";
 import breadcrumbs from "./modules/breadcrumbs";
 import callout from "./modules/callout";
 import creativeModule from "./modules/creative";
@@ -22,14 +23,12 @@ import flagList from "./modules/flag-list";
 import hero from "./modules/hero";
 import logoList from "./modules/logo-list";
 import pricingList from "./modules/pricing-list";
-import richtextModule from "./modules/richtext-module";
 import statList from "./modules/stat-list";
 import stepList from "./modules/step-list";
 import testimonialFeatured from "./modules/testimonial.featured";
 import testimonialList from "./modules/testimonial-list";
 import spacer from "./modules/spacer";
 import heroLine from "./objects/hero.line";
-import heroLargetext from "./modules/hero.largetext";
 
 export const schemaTypes = [
   // documents
@@ -50,15 +49,14 @@ export const schemaTypes = [
 
   // modules
   accordionList,
+  // blockContent,
   breadcrumbs,
   callout,
   creativeModule,
   flagList,
   hero,
-  heroLargetext,
   logoList,
   pricingList,
-  richtextModule,
   spacer,
   statList,
   stepList,

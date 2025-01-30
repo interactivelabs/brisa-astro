@@ -34,13 +34,7 @@ export default defineType({
             defineField({
               name: "subModules",
               type: "array",
-              of: [
-                creativeCtas,
-                creativeIcon,
-                creativeImage,
-                creativeRichtext,
-                { type: "custom-html" },
-              ],
+              of: [creativeCtas, creativeIcon, creativeImage, creativeRichtext],
             }),
             defineField({
               name: "colSpan",

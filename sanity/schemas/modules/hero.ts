@@ -12,22 +12,21 @@ export default defineType({
   type: "object",
   groups: [
     { name: "content", default: true },
-    { name: "orbs" },
     { name: "image" },
     { name: "options" },
   ],
   fieldsets: [alignmentFieldset],
   fields: [
     defineField({
-      name: "textColor",
-      title: "Text color",
-      type: "simplerColor",
-      group: "content",
-    }),
-    defineField({
       name: "pretitle",
       type: "string",
       group: "content",
+    }),
+    defineField({
+      name: "largetext",
+      title: "Hero Large Text",
+      type: "array",
+      of: [{ type: "heroLine" }],
     }),
     defineField({
       name: "content",
@@ -43,24 +42,10 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      name: "enableOrbs",
-      description:
-        "Enable animated orbs instead of an image. If used, the background image will be used as a fallback for legacy browsers. Leave blank colors for transparent.",
-      title: "Enable",
+      name: "enableDefault",
+      description: "Default content if other content is not provided",
+      title: "Enable Default",
       type: "boolean",
-      group: "orbs",
-    }),
-    defineField({
-      name: "orbFill",
-      title: "Orb color",
-      type: "simplerColor",
-      group: "orbs",
-    }),
-    defineField({
-      name: "orbBackground",
-      title: "Background color",
-      type: "simplerColor",
-      group: "orbs",
     }),
     defineField({
       name: "bgImage",
