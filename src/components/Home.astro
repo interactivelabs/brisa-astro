@@ -1,8 +1,24 @@
-<div id="container">
-  <main>
-    <section id="hero">
-      <h1>Welcome to the new website!</h1>
-    </section>
-    <section id="links">New section</section>
-  </main>
-</div>
+---
+import type { HomeQueryResult } from "../../sanity/schemas/types";
+
+import { defineQuery } from "groq";
+import { loadQuery } from "../../sanity/utils/load-query";
+
+const homeQuery =
+  defineQuery(`*[_type == 'page' && metadata.slug.current == 'home'][0]{
+  ...,
+}`);
+
+const { data } = await loadQuery<HomeQueryResult>({
+  query: homeQuery,
+});
+
+console.log(data);
+---
+
+<main class="container">
+  <section id="hero">
+    <h1>Welcome to the new website!</h1>
+  </section>
+  <section id="links">New section</section>
+</main>

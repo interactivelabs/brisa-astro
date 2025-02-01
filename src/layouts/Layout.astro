@@ -2,6 +2,7 @@
 import { defineQuery } from "groq";
 import { loadQuery } from "../../sanity/utils/load-query";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 import type { SiteQueryResult } from "../../sanity/schemas/types";
 
@@ -10,11 +11,11 @@ const siteQuery = defineQuery(`*[_type == 'site'][0]{
   headerMenu->,
   footerMenu->
 }`);
-const { data: SiteInfo } = await loadQuery<SiteQueryResult>({
+const { data: siteInfo } = await loadQuery<SiteQueryResult>({
   query: siteQuery,
 });
 
-if (!SiteInfo) {
+if (!siteInfo) {
   throw new Error("No site data found");
 }
 ---
@@ -26,11 +27,12 @@ if (!SiteInfo) {
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{SiteInfo.title}</title>
+    <title>{siteInfo.title}</title>
   </head>
   <body>
-    <Header logo={SiteInfo.logo} headerMenu={SiteInfo.headerMenu} />
+    <Header logo={siteInfo.logo} headerMenu={siteInfo.headerMenu} />
     <slot />
+    <Footer logo={siteInfo.logo} footerMenu={siteInfo.footerMenu} />
   </body>
 </html>
 

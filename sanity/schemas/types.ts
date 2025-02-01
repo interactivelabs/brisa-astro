@@ -735,9 +735,63 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata
   | Navigation;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/components/Home.astro
+// Variable: homeQuery
+// Query: *[_type == 'page' && metadata.slug.current == 'home'][0]{  ...,}
+export type HomeQueryResult = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  modules?: Array<
+    | ({
+        _key: string;
+      } & AccordionList)
+    | ({
+        _key: string;
+      } & Breadcrumbs)
+    | ({
+        _key: string;
+      } & Callout)
+    | ({
+        _key: string;
+      } & CreativeModule)
+    | ({
+        _key: string;
+      } & FlagList)
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & LogoList)
+    | ({
+        _key: string;
+      } & PricingList)
+    | ({
+        _key: string;
+      } & Spacer)
+    | ({
+        _key: string;
+      } & StatList)
+    | ({
+        _key: string;
+      } & StepList)
+    | ({
+        _key: string;
+      } & TestimonialList)
+    | ({
+        _key: string;
+      } & TestimonialFeatured)
+  >;
+  metadata?: Metadata;
+} | null;
+
 // Source: ./src/layouts/Layout.astro
 // Variable: siteQuery
-// Query: *[_type == 'site'][0]{	...,	headerMenu->,	footerMenu->}
+// Query: *[_type == 'site'][0]{  ...,  headerMenu->,  footerMenu->}
 export type SiteQueryResult = {
   _id: string;
   _type: "site";
@@ -852,6 +906,7 @@ export type SiteQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == 'site'][0]{\n\t...,\n\theaderMenu->,\n\tfooterMenu->\n}": SiteQueryResult;
+    "*[_type == 'page' && metadata.slug.current == 'home'][0]{\n  ...,\n}": HomeQueryResult;
+    "*[_type == 'site'][0]{\n  ...,\n  headerMenu->,\n  footerMenu->\n}": SiteQueryResult;
   }
 }
