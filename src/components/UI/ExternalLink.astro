@@ -1,0 +1,12 @@
+---
+import type { Link } from '../../../sanity/schemas/types';
+
+interface Props {
+  link: Link;
+  class?: string;
+}
+
+const { link, class: cssClassNames } = Astro.props
+---
+
+<a href={link.external} class={cssClassNames}>{link.label}</a>

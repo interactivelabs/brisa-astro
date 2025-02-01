@@ -1,5 +1,6 @@
 // documents
 import site from "./documents/site";
+
 import page from "./documents/page";
 import navigation from "./documents/navigation";
 import announcement from "./documents/announcement";

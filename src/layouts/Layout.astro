@@ -1,22 +1,44 @@
+---
+import { defineQuery } from "groq";
+import { loadQuery } from "../../sanity/utils/load-query";
+import Header from "../components/Header.astro";
+
+import type { SiteQueryResult } from "../../sanity/schemas/types";
+
+const siteQuery = defineQuery(`*[_type == 'site'][0]{
+  ...,
+  headerMenu->,
+  footerMenu->
+}`);
+const { data: SiteInfo } = await loadQuery<SiteQueryResult>({
+  query: siteQuery,
+});
+
+if (!SiteInfo) {
+  throw new Error("No site data found");
+}
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{SiteInfo.title}</title>
+  </head>
+  <body>
+    <Header logo={SiteInfo.logo} headerMenu={SiteInfo.headerMenu} />
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

@@ -1,0 +1,20 @@
+---
+import {sanityClient} from 'sanity:client'
+import type { Link } from '../../../sanity/schemas/types';
+
+interface Props {
+  link: Link;
+  class?: string;
+}
+
+const { link, class: cssClassNames } = Astro.props
+
+const destination =
+  link.internal?._ref &&
+  (await sanityClient.fetch(`* [_id == $id][0]{'slug': metadata.slug}`, {
+    id: link.internal?._ref,
+  }))
+---
+
+{destination && <a href={destination.slug.current} class={cssClassNames}>{link.label}</a>}
+{!destination && <span class="text-red-700">{link.label}</span>}

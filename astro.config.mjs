@@ -8,6 +8,9 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    "/home": "/",
+  },
   integrations: [
     sanity({
       projectId: "gkrzr9yu",
