@@ -13,7 +13,7 @@ export default defineConfig({
   },
   integrations: [
     sanity({
-      projectId: import.meta.env.PROJECT_ID,
+      projectId: "gkrzr9yu",
       dataset: "production",
       useCdn: false,
       // Access the Studio on your.url/admin
