@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 import vercel from "@astrojs/vercel";
 
@@ -23,8 +23,10 @@ export default defineConfig({
       studioBasePath: "/admin",
     }),
     react(),
-    tailwind(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   output: "server",
   adapter: vercel(),
 });
