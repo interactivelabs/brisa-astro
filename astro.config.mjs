@@ -6,11 +6,14 @@ import react from "@astrojs/react";
 
 import tailwind from "@astrojs/tailwind";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   redirects: {
     "/home": "/",
   },
+
   integrations: [
     sanity({
       projectId: "gkrzr9yu",
@@ -22,4 +25,6 @@ export default defineConfig({
     react(),
     tailwind(),
   ],
+  output: "server",
+  adapter: vercel(),
 });
