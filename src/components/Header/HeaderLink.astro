@@ -1,0 +1,27 @@
+---
+import type { Link } from "../../../sanity/schemas/types";
+
+import ExternalLink from "../UI/ExternalLink.astro";
+import InternalLink from "../UI/InternalLink.astro";
+
+interface Props {
+  link: Link;
+  class?: string;
+}
+
+const { link, class: cssClassNames } = Astro.props;
+
+const baseClassNames =
+  "inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900";
+---
+
+{
+  "internal" in link && (
+    <InternalLink link={link} class={baseClassNames + " " + cssClassNames} />
+  )
+}
+{
+  link && "external" in link && (
+    <ExternalLink link={link} class={baseClassNames + " " + cssClassNames} />
+  )
+}

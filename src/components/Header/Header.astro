@@ -1,0 +1,59 @@
+---
+import PortableTextImage from "../UI/PortableTextImage.astro";
+
+import type { SiteQueryResult } from "../../../sanity/schemas/types";
+type NonNullSiteQueryResult = NonNullable<SiteQueryResult>;
+
+import Container from "../UI/Container.astro";
+
+import HeaderLink from "./HeaderLink.astro";
+import Button from "../UI/Button.tsx";
+import MobileHeader from "./MobileHeader.tsx";
+import LinkButton from "../UI/LinkButton";
+
+interface Props {
+  logo?: NonNullSiteQueryResult["logo"];
+  headerMenu?: NonNullSiteQueryResult["headerMenu"];
+}
+
+const { logo, headerMenu } = Astro.props;
+---
+
+<header class="py-10">
+  <Container>
+    <nav class="relative z-50 flex justify-between">
+      <div class="flex items-center md:gap-x-12">
+        <a href="/">
+          <PortableTextImage
+            asset={logo?.image?.default?.asset || {}}
+            alt={logo?.name}
+            class="h-10 w-auto"
+          />
+        </a>
+        <div class="hidden md:flex md:gap-x-6">
+          {
+            headerMenu?.items?.map((item) =>
+              item._type === "link" ? (
+                <HeaderLink link={item} />
+              ) : (
+                <>
+                  {item.link && <HeaderLink link={item.link} />}
+                  {item.links &&
+                    item.links.map((subitem) => <HeaderLink link={subitem} />)}
+                </>
+              ),
+            )
+          }
+        </div>
+      </div>
+      <div class="flex items-center gap-x-5 md:gap-x-8">
+        <LinkButton color="blue" href="/contact">
+          Get started <span class="hidden lg:inline">today</span>
+        </LinkButton>
+        <div class="-mr-1 md:hidden">
+          <MobileHeader client:idle />
+        </div>
+      </div>
+    </nav>
+  </Container>
+</header>
