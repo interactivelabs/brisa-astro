@@ -1,8 +1,10 @@
 ---
+import { defineQuery } from "groq";
+
 import type { HomeQueryResult } from "../../sanity/schemas/types";
 
-import { defineQuery } from "groq";
 import { loadQuery } from "../../sanity/utils/load-query";
+import Hero from "../components/modules/Hero.astro";
 
 const homeQuery =
   defineQuery(`*[_type == 'page' && metadata.slug.current == 'home'][0]{
@@ -17,8 +19,9 @@ console.log(data);
 ---
 
 <main class="container">
-  <section id="hero">
-    <h1>Welcome to the new website!</h1>
-  </section>
-  <section id="links">New section</section>
+  {
+    data?.modules?.map(
+      (module) => module._type === "hero" && <Hero hero={module} />,
+    )
+  }
 </main>

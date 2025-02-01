@@ -1,0 +1,14 @@
+---
+import type { Hero } from "../../../sanity/schemas/types";
+
+interface Props {
+  hero: Hero;
+}
+
+const { hero } = Astro.props;
+---
+
+<section>
+  <h1>{hero.largetext}</h1>
+  <p>{hero.content}</p>
+</section>
