@@ -22,7 +22,9 @@ export default defineConfig({
       // Access the Studio on your.url/admin
       studioBasePath: "/admin",
     }),
-    react(),
+    react({
+      experimentalReactChildren: true,
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
