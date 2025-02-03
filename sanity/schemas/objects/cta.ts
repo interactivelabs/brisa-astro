@@ -14,10 +14,12 @@ export default defineType({
       type: "string",
       options: {
         list: [
-          "action",
-          { title: "Outline", value: "action-outline" },
-          "ghost",
-          "link",
+          "solid.slate",
+          "solid.blue",
+          "solid.white",
+          "outline.slate",
+          "outline.white",
+          "outline.blue",
         ],
       },
     }),

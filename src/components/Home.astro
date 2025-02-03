@@ -15,10 +15,10 @@ const { data } = await loadQuery<HomeQueryResult>({
   query: homeQuery,
 });
 
-console.log(data);
+// console.log(data);
 ---
 
-<main class="container">
+<main>
   {
     data?.modules?.map(
       (module) => module._type === "hero" && <Hero hero={module} />,
