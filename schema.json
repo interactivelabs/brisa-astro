@@ -2031,19 +2031,27 @@
             "of": [
               {
                 "type": "string",
-                "value": "action"
+                "value": "solid.slate"
               },
               {
                 "type": "string",
-                "value": "action-outline"
+                "value": "solid.blue"
               },
               {
                 "type": "string",
-                "value": "ghost"
+                "value": "solid.white"
               },
               {
                 "type": "string",
-                "value": "link"
+                "value": "outline.slate"
+              },
+              {
+                "type": "string",
+                "value": "outline.white"
+              },
+              {
+                "type": "string",
+                "value": "outline.blue"
               }
             ]
           },

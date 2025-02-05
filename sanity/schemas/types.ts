@@ -345,7 +345,13 @@ export type LinkList = {
 export type Cta = {
   _type: "cta";
   link?: Link;
-  style?: "action" | "action-outline" | "ghost" | "link";
+  style?:
+    | "solid.slate"
+    | "solid.blue"
+    | "solid.white"
+    | "outline.slate"
+    | "outline.white"
+    | "outline.blue";
 };
 
 export type Testimonial = {

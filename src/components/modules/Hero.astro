@@ -1,10 +1,14 @@
 ---
 import clsx from "clsx";
 
-import type { Hero } from "../../../sanity/schemas/types";
+import type { Hero, Cta } from "../../../sanity/schemas/types";
 import urlForImage from "../../../sanity/utils/urlForImage";
+
 import Container from "../UI/Container.astro";
-import LinkButton from "../UI/LinkButton";
+import InternalLink from "../UI/InternalLink.astro";
+import ExternalLink from "../UI/ExternalLink.astro";
+import { getClassNames, SanityStylesToVariantStyles } from "../UI/Button";
+import type { BaseButtonProps } from "../UI/Button";
 
 interface Props {
   hero: Hero;
@@ -20,6 +24,12 @@ let heroBgImageUrl = "";
 if (asset) {
   heroBgImageUrl = urlForImage(asset).format("webp").url();
 }
+
+const getButtonVariantFromStyle = (style?: Cta["style"]): BaseButtonProps => {
+  if (!style) return {};
+
+  return SanityStylesToVariantStyles[style];
+};
 ---
 
 <Container
@@ -37,6 +47,26 @@ if (asset) {
     {hero.content}
   </p>
   <div>
-    {hero.ctas?.map((cta) => <LinkButton>{cta.style}</LinkButton>)}
+    {
+      hero.ctas?.map(
+        (cta) =>
+          cta.link && (
+            <>
+              {"internal" in cta.link && (
+                <InternalLink
+                  link={cta.link}
+                  class={getClassNames(getButtonVariantFromStyle(cta.style))}
+                />
+              )}
+              {"external" in cta.link && (
+                <ExternalLink
+                  link={cta.link}
+                  class={getClassNames(getButtonVariantFromStyle(cta.style))}
+                />
+              )}
+            </>
+          ),
+      )
+    }
   </div>
 </Container>

@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import type { Cta } from "../../../sanity/schemas/types";
 
 export const baseStyles = {
   solid:
@@ -34,10 +35,38 @@ export type BaseButtonProps =
       color?: keyof typeof variantStyles.outline;
     };
 
-export const getClassNames = ({
-  variant = "solid",
-  color = "slate",
-}: BaseButtonProps) => {
+export const SanityStylesToVariantStyles: Record<
+  NonNullable<Cta["style"]>,
+  BaseButtonProps
+> = {
+  "solid.slate": {
+    variant: "solid",
+    color: "slate",
+  },
+  "solid.blue": {
+    variant: "solid",
+    color: "blue",
+  },
+  "solid.white": {
+    variant: "solid",
+    color: "white",
+  },
+  "outline.slate": {
+    variant: "outline",
+    color: "slate",
+  },
+  "outline.white": {
+    variant: "outline",
+    color: "white",
+  },
+  "outline.blue": {
+    variant: "outline",
+    color: "blue",
+  },
+};
+
+export const getClassNames = (props?: BaseButtonProps) => {
+  const { variant = "solid", color = "slate" } = props || {};
   return clsx(
     baseStyles[variant],
     variant === "outline"
